@@ -3,22 +3,33 @@ import React from 'react';
 class SearchForm extends React.Component {
 
 
-
-    state = {
+// The searchText state get updated in onSearchChange function.
+   state = {
         searchText: ''
       }
 
-
+// In onSearchChange function searchText get updated when user type in the search filed.
+// onSearchChange is called via onChange method.
   onSearchChange = e => {
    this.setState({searchText: e.target.value});
   }
 
+
+// The handleSubmit function is called when the form is submitted.
+// Use reset() method to clear the form fild from the current text.
+// Inside handleSubmit function will call onSearch method.
+// performSearch takes one argument (query) so we need to pass it to onSearch method.
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSearch(this.query.value);
     e.currentTarget.reset();
   }
 
+//Use ref attribute to access value of the input filed to searchText.
+//ref attribute allaws us to refrence or direct access to the dom element.
+//The ref attribute takes a callback function. A callback function will excuted immediately after the component mounted to the dom.
+//When the input is rendered onto the page, the callback function will return a reference to the input which you can access with
+// this.query
   render(){
     return (
       <form className="search-form"
